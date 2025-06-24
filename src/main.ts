@@ -69,6 +69,7 @@ if (someElement) {
 } 
 */
 
+/* 
 // classes
 interface UserInterface {
   getFullName(): string;
@@ -105,4 +106,65 @@ console.log(User.maxAge);
 
 const admin = new Admin("Jane", "Doe");
 admin.setEditor("vim");
-console.log(admin.getFullName());
+console.log(admin.getFullName()); 
+*/
+
+/* 
+// Enums
+// enum StatusEnum {
+//     notStarted, // 0
+//     inProgress, // 1
+//     done // 2
+// }
+
+enum StatusEnum {
+  notStarted = "notStarted",
+  inProgress = "inProgress",
+  done = "done",
+}
+
+let stat: StatusEnum = StatusEnum.notStarted;
+console.log(stat); // 'notStarted'
+
+interface TaskInterface {
+  id: number;
+  status: StatusEnum;
+}
+
+const task: TaskInterface = {
+  id: 1,
+  status: StatusEnum.inProgress,
+};
+ */
+
+// generics
+const addId = <T extends object>(obj: T) => {
+  const id = Math.random().toString(16);
+  return {
+    ...obj,
+    id,
+  };
+};
+
+interface User<T> {
+  name: string;
+  data: T;
+}
+
+const user: User<{ meta: string }> = {
+  name: "John",
+  data: {
+    meta: "some metadata",
+  },
+};
+
+const user2: User<{ response: object }> = {
+  name: "Jane",
+  data: {
+    response: { title: "Hello World" },
+  },
+};
+
+//const result = addId<{ name: string}>(user);
+const result = addId<User<{ meta: string }>>(user);
+console.log(result);

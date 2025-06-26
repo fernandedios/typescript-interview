@@ -136,7 +136,7 @@ const task: TaskInterface = {
   status: StatusEnum.inProgress,
 };
  */
-
+/* 
 // generics
 const addId = <T extends object>(obj: T) => {
   const id = Math.random().toString(16);
@@ -168,3 +168,34 @@ const user2: User<{ response: object }> = {
 //const result = addId<{ name: string}>(user);
 const result = addId<User<{ meta: string }>>(user);
 console.log(result);
+ */
+/* 
+// arrays and tuples
+//const names: (string | number)[] = ["John", "Jane", 42, "Doe"]; // array
+//const names: [string, string, string] = ["John", "Jane", "Doe"]; // tuple
+
+const failedResponse: [string, number] = ["Error occurred", 404];
+const primaryColots: [string, string, string] = [
+  "#ff0000",
+  "#00ff00",
+  "#0000ff",
+];
+ */
+
+// optional operator and elvis operator
+interface UserInterface {
+  firstName?: string;
+  lastName: string;
+}
+
+const user: UserInterface = {
+  lastName: "Sparrow",
+};
+
+console.log(user.firstName?.toUpperCase());
+
+const getLastName = (user?: UserInterface): string | undefined => {
+  return user?.lastName;
+};
+
+console.log(getLastName(user)); // "Sparrow"

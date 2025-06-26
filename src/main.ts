@@ -226,7 +226,7 @@ const result = users.map((user) => {
 console.log(result); 
  */
 
-// index signature
+/* // index signature
 interface UserInterface {
   id: number;
   name: string;
@@ -241,3 +241,35 @@ const names: NamesInterface = {
   foo: "foo",
   bar: "bar",
 };
+ */
+
+/* 
+// record helper
+// interface Names {
+//   [key: string]: string; // index signature
+// }
+
+type Names = Record<string, string>; // Record helper type
+
+const names: Names = {
+  foo: "foo",
+  bar: "bar",
+};
+
+type NumericRecord = Record<string, number>;
+
+const salary: NumericRecord = {
+  annual: 50000,
+  bonus: 60000,
+};
+ */
+
+// omit and pick
+interface User {
+  id: number;
+  name: string;
+  age: number;
+}
+
+type Profile = Omit<User, "age" | "name">; // Omit 'age' and 'name'
+type Staff = Pick<User, "id" | "name">; // Pick 'id' and 'name'

@@ -183,7 +183,7 @@ const primaryColots: [string, string, string] = [
  */
 
 // optional operator and elvis operator
-interface UserInterface {
+/* interface UserInterface {
   firstName?: string;
   lastName: string;
 }
@@ -198,4 +198,46 @@ const getLastName = (user?: UserInterface): string | undefined => {
   return user?.lastName;
 };
 
-console.log(getLastName(user)); // "Sparrow"
+console.log(getLastName(user)); // "Sparrow" 
+*/
+
+/* 
+// keyof operator
+interface UserInterface {
+  id: number;
+  name: string;
+  age: number;
+}
+
+const users: UserInterface[] = [
+  { id: 1, name: "John", age: 30 },
+  { id: 2, name: "Jane", age: 25 },
+  { id: 3, name: "Doe", age: 40 },
+];
+
+const columns: Array<keyof UserInterface> = ["id", "name", "age"];
+
+const result = users.map((user) => {
+  return columns.map((column) => {
+    return user[column];
+  });
+});
+
+console.log(result); 
+ */
+
+// index signature
+interface UserInterface {
+  id: number;
+  name: string;
+  age: number;
+}
+
+interface NamesInterface {
+  [key: string]: string; // index signature
+}
+
+const names: NamesInterface = {
+  foo: "foo",
+  bar: "bar",
+};

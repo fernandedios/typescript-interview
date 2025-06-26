@@ -264,7 +264,7 @@ const salary: NumericRecord = {
 };
  */
 
-// omit and pick
+/* // omit and pick
 interface User {
   id: number;
   name: string;
@@ -273,3 +273,44 @@ interface User {
 
 type Profile = Omit<User, "age" | "name">; // Omit 'age' and 'name'
 type Staff = Pick<User, "id" | "name">; // Pick 'id' and 'name'
+ */
+
+/* 
+// readonly
+interface User {
+  id: number;
+  name: string;
+  age: number;
+}
+
+type ROUser = Readonly<User>; // makes all properties readonly
+
+const user: ROUser = {
+  id: 1,
+  name: "John",
+  age: 30,
+}; 
+*/
+
+// partial
+interface User {
+  id: number;
+  name: string;
+  age: number;
+}
+
+const updateUser = (user: User, fields: Partial<User>) => {
+  return {
+    ...user,
+    ...fields,
+  };
+};
+
+const user: User = {
+  id: 1,
+  name: "John",
+  age: 30,
+};
+
+const updatedUser = updateUser(user, { name: "Jane" });
+console.log(updatedUser); // { id: 1, name: 'Jane', age: 30 }

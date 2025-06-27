@@ -1,4 +1,4 @@
-console.log("Typescript");
+//console.log("Typescript");
 
 /* 
 // interface
@@ -136,6 +136,7 @@ const task: TaskInterface = {
   status: StatusEnum.inProgress,
 };
  */
+
 /* 
 // generics
 const addId = <T extends object>(obj: T) => {
@@ -169,6 +170,7 @@ const user2: User<{ response: object }> = {
 const result = addId<User<{ meta: string }>>(user);
 console.log(result);
  */
+
 /* 
 // arrays and tuples
 //const names: (string | number)[] = ["John", "Jane", 42, "Doe"]; // array
@@ -292,6 +294,7 @@ const user: ROUser = {
 }; 
 */
 
+/* 
 // partial
 interface User {
   id: number;
@@ -313,4 +316,65 @@ const user: User = {
 };
 
 const updatedUser = updateUser(user, { name: "Jane" });
-console.log(updatedUser); // { id: 1, name: 'Jane', age: 30 }
+console.log(updatedUser); // { id: 1, name: 'Jane', age: 30 } 
+*/
+
+/* 
+// required
+interface User {
+  id?: number;
+  name?: string;
+  age?: number;
+}
+
+const user: Required<User> = {
+  id: 1,
+  name: "John",
+  age: 30,
+};
+ */
+
+// react
+import {useState, createContext, useContext} from 'react';
+
+interface ButtonProps {
+  text?: string;
+  icon: string;
+}
+
+interface User {
+  id: number;
+  name: string;
+}
+
+const Button = ({ text = "Submit", icon }: ButtonProps): JSX.Element => {
+  return (
+    <button>
+      {text} {icon && <span>{icon}</span>}
+      {children && children}
+    </button>
+  );
+};
+
+const AppContext = createContext({ theme: "light" });
+
+const App = () => {
+  const [user, setUser] = useState<User | null>(null);
+  const appContext = useContext(AppContext);
+
+  setUser({ id: 1, name: "John Doe" });
+
+  return (
+    <div>
+      <h1>Hello, TypeScript!</h1>
+      <Button icon="👍">
+        <span>Cildren</span>
+      </Button>
+      {user && user.name}
+      {appContext.theme}
+    </div>
+  );
+};
+
+export default App;
+

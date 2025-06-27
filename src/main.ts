@@ -334,8 +334,9 @@ const user: Required<User> = {
 };
  */
 
+/* 
 // react
-import {useState, createContext, useContext} from 'react';
+import {useState, createContext, useContext, Component} from 'react';
 
 interface ButtonProps {
   text?: string;
@@ -356,25 +357,59 @@ const Button = ({ text = "Submit", icon }: ButtonProps): JSX.Element => {
   );
 };
 
-const AppContext = createContext({ theme: "light" });
+// const AppContext = createContext({ theme: "light" });
 
-const App = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const appContext = useContext(AppContext);
+// const App = () => {
+//   const [user, setUser] = useState<User | null>(null);
+//   const appContext = useContext(AppContext);
 
-  setUser({ id: 1, name: "John Doe" });
+//   setUser({ id: 1, name: "John Doe" });
 
-  return (
-    <div>
-      <h1>Hello, TypeScript!</h1>
-      <Button icon="👍">
-        <span>Cildren</span>
-      </Button>
-      {user && user.name}
-      {appContext.theme}
-    </div>
-  );
+//   return (
+//     <div>
+//       <h1>Hello, TypeScript!</h1>
+//       <Button icon="👍">
+//         <span>Cildren</span>
+//       </Button>
+//       {user && user.name}
+//       {appContext.theme}
+//     </div>
+//   );
+// };
+
+interface AppState {
+  currentUser?: User;
+}
+class App extends Component<{}, AppState> {
+  componentDidMount() {
+    this.setState({
+      currentUser: { id: 1, name: "John Doe" },
+    });
+  }
+  render(): JSX.Element {
+    return (
+      <div>
+        App
+        <Button icon="👍">
+          <span>Children</span>
+        </Button>
+      </div>
+    );
+  }
+} 
+*/
+
+// literal type
+const foo = "foo"; // type is "foo", not string
+const zero = 0; // type is 0, not number
+const falsy = false; // type is false, not boolean
+
+type Easing = "ease-in" | "ease-out" | "ease-in-out"; // literal type
+
+const animate = (easing: Easing): void => {
+  if (easing === "ease-in") {
+  } else if (easing === "ease-out") {
+  } else if (easing === "ease-in-out") {
+  } else {
+  }
 };
-
-export default App;
-
